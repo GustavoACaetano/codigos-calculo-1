@@ -25,19 +25,24 @@ rms_global = np.sqrt(mean_square)
 threshold_energy = mean_square * block_size  # mesmo critério
 
 # ============================================================
-# 3) Energia por bloco → decide manter ou descartar
+# 3) Energia por bloco → decide manter ou zerar
 # ============================================================
 kept_blocks = []
 kept_indices = []
 
 for i, block in enumerate(blocks, start=1):
     energy = np.sum(block ** 2)
+    
     if energy >= threshold_energy:
+        # mantém o bloco original
         kept_blocks.append(block)
         kept_indices.append(i)
+    else:
+        # mantém a posição, mas zera o conteúdo
+        kept_blocks.append(np.zeros_like(block))
 
-# Reconstrói o sinal filtrado
-filtered_signal = np.concatenate(kept_blocks) if kept_blocks else np.array([])
+# Reconstrói o sinal filtrado (mesmo tamanho do original)
+filtered_signal = np.concatenate(kept_blocks)
 
 # ============================================================
 # 4) Repetir áudio para gerar WAV audível
