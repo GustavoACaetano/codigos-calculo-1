@@ -7,7 +7,7 @@ import os
 # 1) Sinal de entrada (16 amostras)
 # ============================================================
 x = np.array([
-    0, 0, 0, 0,
+    0.1, 0, 0.2, -0.01,
     1, 2, 1, -1,
     0.1, -0.1, 0.05, 0,
     2, -2, 1, -1
@@ -103,10 +103,19 @@ plt.ylabel("Amplitude")
 plt.tight_layout()
 plt.show()
 
-# --- Sinal repetido (para o WAV) ---
+# --- Sinal original repetido (para o WAV) ---
 plt.figure(figsize=(8, 2.5))
 plt.plot(x_long[:200])  # mostra só o início para não ficar gigante
 plt.title("Sinal Original Repetido (para áudio)")
+plt.xlabel("Índice")
+plt.ylabel("Amplitude")
+plt.tight_layout()
+plt.show()
+
+# --- Sinal filtrado repetido (para o WAV) ---
+plt.figure(figsize=(8, 2.5))
+plt.plot(filtered_long[:200])  # mostra só o início para não ficar gigante
+plt.title("Sinal Filtrado Repetido (para áudio)")
 plt.xlabel("Índice")
 plt.ylabel("Amplitude")
 plt.tight_layout()
